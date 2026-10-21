@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#635979",
+                    "on-primary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#cdc1e5",
+                    "inverse-primary": "#ffb1c6",
+                    "surface-container-high": "#ece7e7",
+                    "on-secondary-container": "#004d65",
+                    "on-tertiary-container": "#4b4260",
+                    "secondary": "#0d6683",
+                    "on-primary-fixed-variant": "#7d2747",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fdf8f8",
+                    "on-secondary-fixed": "#001f2a",
+                    "on-surface": "#1c1b1c",
+                    "surface-container": "#f2eded",
+                    "on-secondary": "#ffffff",
+                    "outline": "#8f6f76",
+                    "surface-variant": "#e6e1e1",
+                    "on-tertiary-fixed": "#1f1732",
+                    "tertiary-container": "#eaddff",
+                    "tertiary-fixed": "#eaddff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1c1b1c",
+                    "surface-dim": "#ddd9d9",
+                    "surface-bright": "#fdf8f8",
+                    "secondary-fixed": "#bee9ff",
+                    "inverse-surface": "#323030",
+                    "on-secondary-fixed-variant": "#004d65",
+                    "surface-container-highest": "#e6e1e1",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#5b3f46",
+                    "on-error-container": "#93000a",
+                    "primary": "#9b3e5e",
+                    "surface": "#fdf8f8",
+                    "secondary-container": "#bee9ff",
+                    "secondary-fixed-dim": "#8ad0f1",
+                    "on-primary-fixed": "#3f001b",
+                    "primary-container": "#ffd9e1",
+                    "surface-tint": "#9b3e5e",
+                    "outline-variant": "#e3bdc5",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f4f0f0",
+                    "surface-container-low": "#f7f2f2",
+                    "on-primary-container": "#7d2747",
+                    "primary-fixed": "#ffd9e1",
+                    "primary-fixed-dim": "#ffb1c6",
+                    "on-tertiary-fixed-variant": "#4b4260"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-header { backdrop-filter: blur(20px); }
+        .pet-card-image { mask-image: radial-gradient(circle at center, black 60%, transparent 100%); }
+        .asymmetric-shape { border-radius: 3rem 1.5rem 4rem 2rem; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-[#fdf8f8]/80 dark:bg-[#1c1b1c]/80 backdrop-blur-lg rounded-b-[2.5rem] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist sticker-style logo of a happy dog and cat inside a pink heart shape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0fdbcW_sDt01XhU22UuuvwvodnGkaavEt3n678-H9EAtYn9USy6n0RTiEy9la8vUQim4IYTqLnK1wVZZJqmeQRQNCggZMA4dbCk3PTOMj5-LyyNyW-r9rGewiWc-RLEgjFTnlsZBNCm0l4N3gn9XFfxqtVz0MSSZgAy7eq5U_90OGfYFIei_mUzuRCCn64e6rvc3TqbXEBmVK_4BGDP-SpkxnNTR9XQf7Vp36hPZJpo-l4ry62YeHxXw6wCjGffe_KmaEHuUz5x4"/>
+</div>
+<span class="text-2xl font-bold tracking-tighter text-rose-800 dark:text-rose-100">Sniffr</span>
+</div>
+<button class="material-symbols-outlined text-rose-600 dark:text-rose-300 hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200" data-icon="settings">settings</button>
+</header>
+<main class="pt-24 px-4 max-w-2xl mx-auto space-y-8">
+<!-- Profile Completion Section -->
+<section class="bg-secondary-container/40 p-6 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex justify-between items-end mb-3">
+<h3 class="font-bold text-on-secondary-container text-lg">20% Complete</h3>
+<span class="label-md uppercase tracking-[0.05em] text-secondary font-bold text-[10px]">Finish Setup</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-lowest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary to-secondary-fixed-dim w-[20%] rounded-full"></div>
+</div>
+<!-- Missing Fields -->
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="bg-surface-container-lowest/80 px-3 py-1.5 rounded-full text-[11px] font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="error">error</span>
+                        Missing Breed Name
+                    </span>
+<span class="bg-surface-container-lowest/80 px-3 py-1.5 rounded-full text-[11px] font-semibold text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="add_a_photo">add_a_photo</span>
+                        Missing Photos
+                    </span>
+</div>
+</div>
+<!-- Background Watermark Paw -->
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-secondary/5 text-[120px] pointer-events-none" data-icon="pets">pets</span>
+</section>
+<!-- Feed Section -->
+<div class="space-y-10">
+<!-- Post 1: Asymmetric Editorial Style -->
+<article class="relative group">
+<div class="flex flex-col gap-4">
+<div class="relative">
+<div class="asymmetric-shape overflow-hidden h-[400px] bg-surface-container-low shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close up of a cute white french bulldog wearing a yellow scarf sitting in a bright airy living room with soft pastels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtCmqW7bpNsFX6DdBxdmuDxra4LZhYzyJXmZMGGgO4I9v0280CaGNiSLB5XMp5Y51-niYmc8OwJnQHRZN74foKV3fjLlfjVzPfRICRdhtimt-LBz4eLleUS2ooEKwZtYyEYgbOzciNVLuJpKUDeSeHtwnVfUsdlHg7vg2XuZRsxxRmA8-qFcsGEJW6c2upLl_48zB6emxZpO46P6nPZJw6Pd5i6oUDNiYMFPXi5hogEoLWvfBUXmmp44Ff9kRMfmNYp85rzFqyhpI"/>
+</div>
+<!-- Like Button Floating -->
+<button class="absolute -bottom-4 right-8 w-14 h-14 bg-gradient-to-br from-primary to-primary-fixed-dim rounded-full flex items-center justify-center text-white shadow-xl active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="px-2 space-y-2">
+<div class="flex items-center gap-2">
+<h4 class="text-2xl font-extrabold tracking-tight text-on-surface">Mochi, 2</h4>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">Frenchie</span>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-[15px]">
+                            Just woke up from my third nap today. Is it snack time yet? Looking for a walking buddy who doesn't mind frequent sniff breaks! 🦴🌸
+                        </p>
+<div class="flex items-center gap-6 pt-2">
+<button class="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="text-[12px] font-bold">24</span>
+</button>
+<button class="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+<span class="text-[12px] font-bold">Share</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Post 2: Tonal Shift Design -->
+<article class="bg-surface-container-low p-6 rounded-xl space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full border-2 border-primary-container p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="Portrait of a fluffy grey cat with bright green eyes looking curiously at the camera, soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5d8RMXUAhLXSOgX_qyYDeEmpitWVJWHjMuH58jFcbBBfW-QmGIk7KXipOpy1uwVWX59R--Hdm93gSGFT002s9D_pR7hk3mhTIUByUOxIG2OBHlt-iS5vmGtGx1Jsx5sNwGoMJ5d7LlcwP8Uom-QKcfIpeC3_pwhGTn58CLd8cf6fSH-vCo9RbJvCFBog4TCrBc9WQ7e7k3DokPvE-wkCDGpCmAHNKqOMI4oRBoLuhRyua3GA-pQK7jdNi1ST8Mi808sd-RLZ3CGA"/>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Luna</h4>
+<p class="text-[10px] text-on-surface-variant font-medium">2.4 miles away</p>
+</div>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant" data-icon="more_horiz">more_horiz</button>
+</div>
+<div class="rounded-lg overflow-hidden h-[300px]">
+<img class="w-full h-full object-cover" data-alt="Two kittens playing with a soft pink yarn ball on a beige plush carpet, artistic shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkoM2ePqafjfeTuRIu7-BB9fA7OeTVk94Sbw0XpewdZ_5HItF_yWbxvw5LSCqvn2yAskDW6IyfZmS4_iXe5rWuDPiAMFDcUUu7kN6lKSXZc2c1_lyPIi0ChPjr6ckU02F65JC-BFhi_TERir1FtnCODUk-T1B9VI6fdios0qQnMt3bz7ShRtUai05lNVQC93W0hstYodj01l8DtDBv-mBZQh-bMDWcp5I5-ei-UVzj8Wa8D22PXPLdVJbsOBMkERnek3yL6tCH6FM"/>
+</div>
+<div class="space-y-2">
+<p class="text-on-surface-variant text-[14px]">
+                        Looking for someone who appreciates the finer things in life... like cardboard boxes and sunbeams. ✨
+                    </p>
+<div class="flex gap-4">
+<button class="text-rose-600 flex items-center gap-1"><span class="material-symbols-outlined text-[20px]" data-icon="favorite" style="font-variation-settings: 'FILL' 1;">favorite</span><span class="text-[12px] font-bold">142</span></button>
+<button class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[20px]" data-icon="comment">comment</span><span class="text-[12px] font-bold">8</span></button>
+</div>
+</div>
+</article>
+<!-- Post 3: Editorial Bento-ish Grid -->
+<article class="grid grid-cols-2 gap-4">
+<div class="bg-tertiary-container/30 p-6 rounded-xl flex flex-col justify-center gap-4">
+<h4 class="text-3xl font-extrabold text-tertiary tracking-tighter leading-none">Barnaby,<br/>The Bold</h4>
+<p class="text-[12px] text-on-tertiary-container/80 font-medium">"I may be small, but my personality fills the whole park."</p>
+<button class="bg-tertiary text-on-tertiary py-3 rounded-full text-[12px] font-bold active:scale-95 transition-transform">Say Hello</button>
+</div>
+<div class="h-[250px] rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Small corgi puppy running joyfully through a field of wildflowers during golden hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9bZzSXnZux7RUeTDJ7wXxTnKXSi_yC0f_qizXHu-bR-vWc8w-HPwO_4SeUl580SxXznr6KebVhjtIXCOIN6Y7q99up9ZY-HsQvEyNCyd63JEzQlMhDtxGSZIXiqpAlDMaCLUqywJOwyksNEpOIk-AYrXoRCwocPRF45rvHxWtl36btoOcgijHRu3FmbvkP9tRUAS4qWuXv2ZufKYDnDvBnJYdhb0R8qd3fSvejQODisazNev5I9fY0mPnJ9q1LWI9g5ZMQTb5Zk4"/>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#fdf8f8]/90 dark:bg-[#1c1b1c]/90 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-20px_40px_-15px_rgba(28,27,28,0.06)]">
+<!-- Home Active -->
+<a class="flex flex-col items-center justify-center bg-rose-100 dark:bg-rose-900/40 text-rose-900 dark:text-rose-100 rounded-full px-6 py-2 transition-transform active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home_app_logo" style="font-variation-settings: 'FILL' 1;">home_app_logo</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 px-6 py-2 hover:text-rose-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1">Meet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 px-6 py-2 hover:text-rose-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 px-6 py-2 hover:text-rose-500 transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1">Me</span>
+</a>
+</nav>
+<!-- Contextual FAB - Suppression Rule Check: Active on Home Screen -->
+<button class="fixed bottom-28 right-6 w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary-fixed-dim flex items-center justify-center text-white shadow-[0_40px_40px_-10px_rgba(28,27,28,0.06)] active:scale-95 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]" data-icon="add">add</span>
+</button>
+</body></html>

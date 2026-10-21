@@ -1,0 +1,999 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* ==========================================
+   SNIFFR — GLOBAL STYLES & ANIMATION SYSTEM
+   ========================================== */
+
+@layer base {
+  /* html, not just body: on a page with no fixed height (every page here
+     uses min-h-screen, which can grow taller than the viewport), the
+     DOCUMENT element is what actually owns the scroll, not <body> --
+     Chromium (desktop Chrome and Android's WebView alike) can still chain
+     an overscroll bounce/glow to the html box even with overscroll-behavior
+     set only on body. Setting it on both closes that gap. */
+  html, body {
+    overscroll-behavior: none;
+  }
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+    /* Removes the ~300ms delay browsers use to detect a double-tap-to-zoom
+       before committing to a single tap, and (together with the viewport
+       meta's user-scalable=no) stops a two-finger gesture from being
+       interpreted as pinch-zoom. pan-x/pan-y keep normal one-finger
+       scrolling working everywhere, including inside nested overflow-y-auto
+       regions (chat, modals) -- only the zoom gesture is removed. */
+    touch-action: pan-x pan-y;
+    /* UI chrome (nav labels, buttons, icons) isn't meant to be selected --
+       a long-press turning a tab label into a text-selection handle is one
+       of the more obvious "this is just a website" tells on a touch device.
+       Genuine free-text content (bios, captions, messages, comments) opts
+       back in via .selectable-text below; form fields are unaffected --
+       user-select never applies to an <input>/<textarea>'s own value. */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .selectable-text {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ==========================================
+   SCROLLBAR UTILITIES
+   ========================================== */
+.no-scrollbar::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar,
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Styled scrollbar for desktop */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(244, 167, 185, 0.4);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(244, 167, 185, 0.7);
+  }
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+   ========================================== */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(1deg); }
+  66%       { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244, 167, 185, 0); }
+  50%       { box-shadow: 0 0 30px 8px rgba(244, 167, 185, 0.35); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scale-pop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  70%  { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* Super Sniff "gateway" moment (MeetPage.jsx) -- a one-shot ~1s full-screen
+   wash that expands out from the toggle button's corner, read as "a hidden
+   mode just opened" rather than a plain color change. clip-path (not
+   opacity-only) is what makes it look like something is actually opening
+   outward from that corner instead of the whole screen just flashing. */
+@keyframes gateway-wash {
+  0%   { clip-path: circle(0% at 90% 7%); opacity: 0; }
+  12%  { opacity: 1; }
+  70%  { opacity: 0.85; }
+  100% { clip-path: circle(140% at 90% 7%); opacity: 0; }
+}
+.animate-gateway-wash { animation: gateway-wash 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Sniffr -> Super Sniff header swap (MeetPage.jsx). "Sniffr" dashes off
+   fast toward the toggle button (scaleX stretch sells the speed instead of
+   a real blur filter, which would cost a repaint on every frame) and
+   fades out; then "Super"/"Sniff" fade in one word at a time via
+   staggered animation-delay on .animate-word-fade-in, not a second
+   keyframe each. Whole thing finishes well under 2s total. */
+@keyframes sniffr-race {
+  0%   { transform: translateX(0) scaleX(1); opacity: 1; }
+  55%  { transform: translateX(120px) scaleX(1.6); opacity: 0.7; }
+  100% { transform: translateX(200px) scaleX(2.4); opacity: 0; }
+}
+.animate-sniffr-race { animation: sniffr-race 380ms cubic-bezier(0.55, 0, 0.85, 0.35) both; }
+
+@keyframes word-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-word-fade-in { animation: word-fade-in 320ms ease-out both; }
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.2); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.15); }
+  70%       { transform: scale(1); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes particle-float {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes sidebar-in {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes card-hover-lift {
+  to { transform: translateY(-4px); box-shadow: 0 20px 40px -12px rgba(244, 167, 185, 0.3); }
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30%           { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+@keyframes border-dance {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+/* ==========================================
+   ANIMATION UTILITY CLASSES
+   ========================================== */
+
+.animate-float       { animation: float 5s ease-in-out infinite; }
+.animate-float-slow  { animation: float-slow 8s ease-in-out infinite; }
+.animate-pulse-glow  { animation: pulse-glow 2.5s ease-in-out infinite; }
+.animate-shimmer     {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.4) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+.animate-slide-up       { animation: slide-up 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-slide-in-left  { animation: slide-in-left 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-slide-in-right { animation: slide-in-right 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-fade-in     { animation: fade-in 0.35s ease both; }
+.animate-scale-pop   { animation: scale-pop 0.45s cubic-bezier(0.34,1.56,0.64,1) both; }
+.animate-heartbeat   { animation: heartbeat 1.5s ease-in-out infinite; }
+.animate-gradient    {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+.animate-border-dance { animation: border-dance 6s ease-in-out infinite; }
+.animate-sidebar-in   { animation: sidebar-in 0.35s cubic-bezier(0.34,1.56,0.64,1) both; }
+
+/* ── Scale-Up (bottom sheets & modals) ───── */
+@keyframes scale-up {
+  0%   { opacity: 0; transform: translateY(40px) scale(0.92); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-scale-up {
+  animation: scale-up 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Stagger delays */
+.delay-100  { animation-delay: 100ms; }
+.delay-200  { animation-delay: 200ms; }
+.delay-300  { animation-delay: 300ms; }
+.delay-400  { animation-delay: 400ms; }
+.delay-500  { animation-delay: 500ms; }
+
+/* ==========================================
+   SEQUENTIAL TYPING DOTS (chat "user is typing" indicator)
+   ========================================== */
+@keyframes typing-seq-dot {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  10%, 80% { opacity: 1; transform: scale(1); }
+}
+.typing-seq-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+  animation: typing-seq-dot 1.5s ease-in-out infinite;
+}
+
+/* ==========================================
+   TYPING INDICATOR
+   ========================================== */
+.typing-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #A8D8EA;
+  display: inline-block;
+  animation: typing-dot 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ==========================================
+   GLASSMORPHISM UTILITIES
+   ========================================== */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.glass-dark {
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-pink {
+  background: rgba(254, 228, 233, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 167, 185, 0.3);
+}
+
+/* ==========================================
+   GRADIENT TEXT
+   ========================================== */
+.gradient-text {
+  background: linear-gradient(135deg, #F4A7B9, #A8D8EA, #8FD4C1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-warm {
+  background: linear-gradient(135deg, #F4A7B9, #FFD1DC, #F4A7B9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ==========================================
+   HOVER CARD EFFECTS
+   ========================================== */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(244, 167, 185, 0.3);
+}
+
+.hover-lift-lg {
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.3s ease;
+}
+.hover-lift-lg:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 30px 60px -15px rgba(244, 167, 185, 0.35);
+}
+
+/* ==========================================
+   RIPPLE EFFECT
+   ========================================== */
+.ripple-container { position: relative; overflow: hidden; }
+.ripple-container::after {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  width: 0; height: 0;
+  background: rgba(244, 167, 185, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: width 0.4s, height 0.4s, opacity 0.4s;
+}
+.ripple-container:active::after {
+  width: 200px; height: 200px;
+  margin: -100px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* L11/section 5: the fixed bottom nav's padding-bottom used to come only
+   from Tailwind's pb-5 utility (BottomNav.jsx) -- a fixed amount that
+   doesn't account for Android's gesture-navigation bar overlapping it.
+   env(safe-area-inset-bottom) is 0 on devices/browsers without a safe area
+   (including desktop), so this is additive, not a regression there; it only
+   does anything once index.html's viewport-fit=cover is set, which it now
+   is. Declared here (after Tailwind's own utilities, see the @import at the
+   top of this file) specifically so it wins over pb-5 without needing
+   !important; BottomNav.jsx's pb-5 class was removed to make that explicit.
+   SidebarNav (desktop) doesn't need this -- it isn't bottom-pinned. */
+.mobile-bottom-nav {
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+}
+
+/* One source of truth for Android's status-bar/cutout inset. Capacitor
+   SystemBars injects the native value; env() is the browser/WebView fallback. */
+.capacitor-android {
+  --sniffr-safe-area-top: max(
+    var(--safe-area-inset-top, 0px),
+    env(safe-area-inset-top, 0px)
+  );
+}
+
+/* Fixed headers grow into the safe area, while their scrolling page content
+   gets the same offset so it starts below the full header instead of clipping. */
+.capacitor-android header.fixed.top-0,
+.capacitor-android .fixed.inset-0 > header {
+  padding-top: var(--sniffr-safe-area-top);
+}
+
+.capacitor-android .safe-area-top-panel {
+  padding-top: var(--sniffr-safe-area-top);
+}
+
+@media (max-width: 1023px) {
+  .capacitor-android main.pt-24,
+  .capacitor-android .app-main .pt-24 {
+    padding-top: calc(6rem + var(--sniffr-safe-area-top));
+  }
+}
+
+.capacitor-android .safe-area-top-screen {
+  padding-top: calc(1.5rem + var(--sniffr-safe-area-top));
+}
+
+/* Replaces the old fixed lg:hidden header bars on Chat/Spotlight: those
+   reserved a full opaque bar's height (padding-top: 6rem, above) just to
+   show the app name again on every tab. Now the page's own first content
+   (tab switcher, title) starts right under the status bar and scrolls
+   normally. Spotlight's floating refresh button uses a flat offset instead
+   of a var here -- see the comment by that button for why. */
+.capacitor-android .safe-area-top-content {
+  padding-top: calc(1rem + var(--sniffr-safe-area-top));
+}
+
+/* ==========================================
+   DESKTOP SIDEBAR LAYOUT
+   ========================================== */
+.app-shell {
+  display: flex;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+/* Mobile: full width content */
+.app-sidebar {
+  display: none;
+}
+.app-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Desktop: sidebar + content */
+@media (min-width: 1024px) {
+  .app-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow-y: auto;
+  }
+  .app-main {
+    flex: 1;
+    min-width: 0;
+  }
+  /* Hide mobile bottom nav on desktop */
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+  /* Add right panel space on very wide screens */
+  .app-right-panel {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Tablet: compact sidebar */
+  .app-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    overflow-y: auto;
+  }
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+  .app-right-panel {
+    display: none;
+  }
+}
+
+/* ==========================================
+   TILT CARD (JS-powered)
+   ========================================== */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* ==========================================
+   PARTICLE CANVAS
+   ========================================== */
+.particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================
+   CURSOR GLOW (desktop)
+   ========================================== */
+@media (min-width: 1024px) {
+  .cursor-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(circle, rgba(244, 167, 185, 0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: top 0.1s ease, left 0.1s ease;
+  }
+}
+
+/* ==========================================
+   FOCUS STYLES
+   ========================================== */
+*:focus-visible {
+  outline: 2px solid #F4A7B9;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ==========================================
+   DESKTOP PAGE CENTERING
+   ========================================== */
+@media (min-width: 1024px) {
+  .desktop-content-area {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .desktop-wide-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+}
+
+/* ==========================================
+   NOTIFICATION BADGE
+   ========================================== */
+@keyframes badge-pop {
+  0%   { transform: scale(0); }
+  80%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.badge-pop { animation: badge-pop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ==========================================
+   PREMIUM CARD
+   ========================================== */
+.premium-card {
+  position: relative;
+  overflow: hidden;
+}
+.premium-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ==========================================
+   ACTIVE NAV INDICATOR
+   ========================================== */
+.nav-active-pill {
+  position: relative;
+}
+.nav-active-pill::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(to bottom, #F4A7B9, #A8D8EA);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ==========================================
+   TOOLTIP
+   ========================================== */
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 110%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 20, 30, 0.85);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-50%) translateX(6px);
+  z-index: 999;
+}
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==========================================
+   SEARCH BAR ENHANCED
+   ========================================== */
+.search-glow:focus-within {
+  box-shadow: 0 0 0 3px rgba(244, 167, 185, 0.25),
+              0 8px 24px -8px rgba(244, 167, 185, 0.2);
+}
+
+/* ==========================================
+   STATUS INDICATOR
+   ========================================== */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
+}
+.status-online {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* ==========================================
+   PAGE TRANSITION
+   ========================================== */
+/* fill-mode intentionally omitted (no "both"/"forwards"): once this entrance
+   animation finishes, `transform` must revert to the computed value `none`,
+   not stay at `translateY(0)`. A non-none transform on this wrapper — even
+   an identity one — creates a new containing block for every `position:
+   fixed` descendant (i.e. nearly all app modals/dialogs/sheets, since only
+   a few are portaled to document.body), so their `fixed inset-0` stops
+   anchoring to the real viewport and anchors to this div's own (often
+   taller-than-viewport) content box instead — that's what pushed popups
+   below the fold and left backdrops not covering the bottom nav/sidebar.
+   The visual result at rest is identical either way (translateY(0) already
+   looks like no offset); this only changes the post-animation containing
+   block, not the animation itself. */
+.page-enter {
+  animation: slide-up 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ==========================================
+   DOUBLE-TAP SIGNATURE LIKE ANIMATION (PAW BLESSING)
+   ========================================== */
+
+/* Main Paw Animation (Fade in, scale 70% -> 100%, slight bounce once, hold briefly, fade out) */
+@keyframes double-tap-paw-center {
+  0%   { opacity: 0; transform: scale(0.7); }
+  15%  { opacity: 1; transform: scale(1.05); }
+  25%  { transform: scale(0.98); }
+  35%  { transform: scale(1.0); }
+  75%  { opacity: 1; transform: scale(1.0); }
+  100% { opacity: 0; transform: scale(0.92); }
+}
+.animate-double-tap-paw-center {
+  animation: double-tap-paw-center 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Rainbows (Float slightly upward and left/right outward) */
+@keyframes rainbow-float-top {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7) translate(0, 0); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) translate(-8px, -6px); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) translate(-10px, -8px); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9) translate(-12px, -10px); }
+}
+.animate-rainbow-top {
+  animation: rainbow-float-top 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes rainbow-float-bottom {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7) translate(0, 0); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) translate(-8px, 6px); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) translate(-10px, 8px); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9) translate(-12px, 10px); }
+}
+.animate-rainbow-bottom {
+  animation: rainbow-float-bottom 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Stars (Pop gently with a tiny scale animation) */
+@keyframes star-pop {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  35%  { transform: translate(-50%, -50%) scale(1.0); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+.animate-star-pop {
+  animation: star-pop 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Sparkles (Twinkle briefly with scale/opacity pulse) */
+@keyframes sparkle-twinkle {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+  20%  { opacity: 0.8; transform: translate(-50%, -50%) scale(1.0); }
+  45%  { opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+  65%  { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+}
+.animate-sparkle-twinkle {
+  animation: sparkle-twinkle 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Leaves (Drift naturally with a very small rotation) */
+@keyframes leaf-drift-left {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7) rotate(0deg); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) rotate(-6deg); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) rotate(-8deg); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9) rotate(-10deg); }
+}
+.animate-leaf-left {
+  animation: leaf-drift-left 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes leaf-drift-right {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.7) rotate(0deg); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) rotate(6deg); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) rotate(8deg); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9) rotate(10deg); }
+}
+.animate-leaf-right {
+  animation: leaf-drift-right 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Colored dots/confetti (Float outward only a short distance before fading) */
+@keyframes dot-float {
+  0%   { opacity: 0; transform: translate(-50%, -50%) translate(0, 0); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) translate(calc(var(--dx) * 1.2), calc(var(--dy) * 1.2)); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(calc(var(--dx) * 1.3), calc(var(--dy) * 1.3)); }
+}
+.animate-dot-float {
+  animation: dot-float 850ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ── Paw-Trail Pull-to-Refresh ───── */
+@keyframes paw-bounce {
+  0%, 100% { transform: translateY(0) scale(0.8); opacity: 0.3; }
+  50%      { transform: translateY(-6px) scale(1); opacity: 1; }
+}
+.paw-trail-dot {
+  display: inline-block;
+  font-size: 18px;
+  animation: paw-bounce 1s ease-in-out infinite;
+}
+.paw-trail-dot:nth-child(2) { animation-delay: 0.15s; }
+.paw-trail-dot:nth-child(3) { animation-delay: 0.30s; }
+
+/* Hide scrollbar for share sheet horizontal lists */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ==========================================
+   REACTION PICKER ANIMATIONS
+   ========================================== */
+@keyframes reaction-picker {
+  0%   { opacity: 0; transform: scale(0.6) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-reaction-picker {
+  animation: reaction-picker 250ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes reaction-pop {
+  0%   { opacity: 0; transform: scale(0); }
+  60%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-reaction-pop {
+  animation: reaction-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* ==========================================
+   CHAMPION CROWN & SPOTLIGHT ANIMATIONS
+   ========================================== */
+@keyframes crown-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 2px 4px rgba(250, 204, 21, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 5px 15px rgba(250, 204, 21, 0.9));
+  }
+}
+
+@keyframes crown-breath {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes crown-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-25deg);
+  }
+}
+
+.champion-crown {
+  animation: crown-pulse 3.5s ease-in-out infinite, crown-breath 3.5s ease-in-out infinite;
+}
+
+.champion-crown-shimmer-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: crown-shimmer 4.5s infinite linear;
+}
+
+@keyframes cinematic-fade-in {
+  0% { opacity: 0; backdrop-filter: blur(0px); }
+  100% { opacity: 1; backdrop-filter: blur(8px); }
+}
+
+@keyframes cinematic-zoom {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-cinematic-bg {
+  animation: cinematic-fade-in 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-cinematic-card {
+  animation: cinematic-zoom 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Voice note progress bar with tiny moving paw prints */
+.paw-playback-timeline {
+  position: relative;
+  height: 8px;
+  background-color: rgba(228, 228, 231, 0.4);
+  border-radius: 9999px;
+  overflow: visible;
+}
+
+.paw-playback-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #F4A7B9;
+  border-radius: 9999px;
+  transition: width 0.1s linear;
+}
+
+.paw-playback-head {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 0.1s linear;
+  font-size: 14px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Soft gold gradient badge for community owners */
+.owner-badge-gradient {
+  background: linear-gradient(135deg, #FEF08A, #FDE047);
+  color: #854D0E;
+  box-shadow: 0 2px 6px rgba(250, 204, 21, 0.25);
+  font-weight: 800;
+}
+
+/* Message entrance keyframes animations */
+@keyframes message-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* fill-mode intentionally omitted here too -- see .page-enter above.
+   ChatPage's full-screen conversation view (the "fixed inset-0" container
+   in ChatPage.jsx) carries this class directly; with "forwards" it kept a
+   non-none transform after the 0.28s animation, turning that container into
+   a containing block for its own nested fixed dialogs (media viewer,
+   meetup sheet, remove-member confirm, etc.), pushing them out of the real
+   viewport the same way .page-enter did app-wide. */
+.message-enter-animate {
+  animation: message-enter 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Skeleton loader pulsing styles */
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-skeleton {
+  animation: skeleton-pulse 1.4s infinite ease-in-out;
+}
+
+/* Bottom Sheet Slide Up Animation */
+@keyframes bottom-sheet-slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.bottom-sheet-slide-up {
+  animation: bottom-sheet-slide-up 0.35s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ==========================================
+   MEET CARD — FIRST-TIME SWIPE HINT
+   ========================================== */
+@keyframes swipe-hint-hand {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  25%       { transform: translateX(-14px); opacity: 1; }
+  50%       { transform: translateX(0); opacity: 0.7; }
+  75%       { transform: translateX(14px); opacity: 1; }
+}
+.animate-swipe-hint-hand {
+  display: inline-block;
+  animation: swipe-hint-hand 1.8s ease-in-out infinite;
+}
+
+@keyframes swipe-hint-arrow-left {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50%       { transform: translateX(-6px); opacity: 1; }
+}
+@keyframes swipe-hint-arrow-right {
+  0%, 100% { transform: translateX(0); opacity: 0.6; }
+  50%       { transform: translateX(6px); opacity: 1; }
+}
+.animate-swipe-hint-arrow-left  { animation: swipe-hint-arrow-left 1.4s ease-in-out infinite; }
+.animate-swipe-hint-arrow-right { animation: swipe-hint-arrow-right 1.4s ease-in-out infinite; }
+
+/* Multi-media pre-send upload preview list card styling */
+.media-pre-send-card {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: 2px solid white;
+}
+.media-pre-send-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+.media-pre-send-remove:hover {
+  background-color: rgba(220, 38, 38, 0.9);
+}

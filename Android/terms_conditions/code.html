@@ -1,0 +1,237 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#A8D8EA",
+                    "on-surface-variant": "#71686B",
+                    "surface-container-low": "#F1F5F9",
+                    "tertiary": "#8FD4C1",
+                    "on-primary-container": "#915064",
+                    "inverse-primary": "#FFD1DC",
+                    "inverse-surface": "#323030",
+                    "surface-bright": "#F7F9FC",
+                    "background": "#F7F9FC",
+                    "on-primary-fixed-variant": "#915064",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#E2E8F0",
+                    "surface-container-high": "#E5F0F5",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#2D5A72",
+                    "outline": "#D1C4C9",
+                    "on-tertiary-container": "#2A5D50",
+                    "on-secondary-fixed": "#001f2a",
+                    "primary-container": "#FEE4E9",
+                    "secondary-container": "#D1EEFB",
+                    "on-secondary-fixed-variant": "#2D5A72",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#B8E6D9",
+                    "secondary": "#A8D8EA",
+                    "primary-fixed": "#FEE4E9",
+                    "surface-container": "#F0F4F8",
+                    "primary": "#F4A7B9",
+                    "primary-fixed-dim": "#FFD1DC",
+                    "inverse-on-surface": "#f4f0f0",
+                    "surface-variant": "#EBF2F6",
+                    "surface-container-highest": "#EAF1F5",
+                    "on-surface": "#453F41",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#E9DDE1",
+                    "tertiary-fixed": "#D5F2E9",
+                    "surface": "#F7F9FC",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#D5F2E9",
+                    "on-tertiary-fixed-variant": "#2A5D50",
+                    "on-tertiary-fixed": "#002019",
+                    "secondary-fixed": "#D1EEFB",
+                    "surface-tint": "#F4A7B9",
+                    "on-primary-fixed": "#3F101C",
+                    "on-background": "#453F41"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .organic-blob {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #F4A7B9;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-left-32{left:-8rem}.-right-20{right:-5rem}.-top-10{top:-2.5rem}.bottom-10{bottom:2.5rem}.right-0{right:0px}.top-0{top:0px}.top-1\/2{top:50%}.-z-10{z-index:-10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-2{margin-bottom:0.5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:0.125rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.h-1{height:0.25rem}.h-20{height:5rem}.h-64{height:16rem}.h-80{height:20rem}.h-\[2px\]{height:2px}.min-h-\[884px\]{min-height:884px}.w-1{width:0.25rem}.w-12{width:3rem}.w-20{width:5rem}.w-64{width:16rem}.w-80{width:20rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:2rem}.rounded-xl{border-radius:3rem}.border{border-width:1px}.border-outline-variant\/10{border-color:rgb(233 221 225 / 0.1)}.bg-outline{--tw-bg-opacity:1;background-color:rgb(209 196 201 / var(--tw-bg-opacity, 1))}.bg-outline-variant\/30{background-color:rgb(233 221 225 / 0.3)}.bg-primary-container{--tw-bg-opacity:1;background-color:rgb(254 228 233 / var(--tw-bg-opacity, 1))}.bg-secondary-container{--tw-bg-opacity:1;background-color:rgb(209 238 251 / var(--tw-bg-opacity, 1))}.bg-secondary-container\/30{background-color:rgb(209 238 251 / 0.3)}.bg-surface{--tw-bg-opacity:1;background-color:rgb(247 249 252 / var(--tw-bg-opacity, 1))}.bg-surface-container-lowest{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-pink-200{--tw-gradient-from:#fbcfe8 var(--tw-gradient-from-position);--tw-gradient-to:rgb(251 207 232 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-sky-200{--tw-gradient-to:#bae6fd var(--tw-gradient-to-position)}.p-4{padding:1rem}.p-8{padding:2rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-12{padding-bottom:3rem}.pb-4{padding-bottom:1rem}.pt-24{padding-top:6rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.font-body{font-family:Plus Jakarta Sans}.font-headline{font-family:Plus Jakarta Sans}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[15rem\]{font-size:15rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.tracking-tighter{letter-spacing:-0.05em}.tracking-widest{letter-spacing:0.1em}.text-error{--tw-text-opacity:1;color:rgb(186 26 26 / var(--tw-text-opacity, 1))}.text-on-secondary-container{--tw-text-opacity:1;color:rgb(45 90 114 / var(--tw-text-opacity, 1))}.text-on-surface{--tw-text-opacity:1;color:rgb(69 63 65 / var(--tw-text-opacity, 1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(113 104 107 / var(--tw-text-opacity, 1))}.text-pink-400{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}.text-primary{--tw-text-opacity:1;color:rgb(244 167 185 / var(--tw-text-opacity, 1))}.text-secondary{--tw-text-opacity:1;color:rgb(168 216 234 / var(--tw-text-opacity, 1))}.text-tertiary{--tw-text-opacity:1;color:rgb(143 212 193 / var(--tw-text-opacity, 1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122 / var(--tw-text-opacity, 1))}.opacity-20{opacity:0.2}.opacity-30{opacity:0.3}.opacity-40{opacity:0.4}.opacity-\[0\.03\]{opacity:0.03}.shadow-\[0_10px_30px_-5px_rgba\(244\2c 167\2c 185\2c 0\.4\)\]{--tw-shadow:0 10px 30px -5px rgba(244,167,185,0.4);--tw-shadow-colored:0 10px 30px -5px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_15px_40_px_-15px_rgba\(244\2c 167\2c 185\2c 0\.2\)\]{--tw-shadow:0 15px 40 px -15px rgba(244,167,185,0.2);--tw-shadow-colored:0 15px 40 -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_15px_40px_-15px_rgba\(168\2c 216\2c 234\2c 0\.3\)\]{--tw-shadow:0 15px 40px -15px rgba(168,216,234,0.3);--tw-shadow-colored:0 15px 40px -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_15px_40px_-15px_rgba\(213\2c 242\2c 233\2c 0\.3\)\]{--tw-shadow:0 15px 40px -15px rgba(213,242,233,0.3);--tw-shadow-colored:0 15px 40px -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_15px_40px_-15px_rgba\(244\2c 167\2c 185\2c 0\.2\)\]{--tw-shadow:0 15px 40px -15px rgba(244,167,185,0.2);--tw-shadow-colored:0 15px 40px -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.selection\:bg-primary-container *::selection{--tw-bg-opacity:1;background-color:rgb(254 228 233 / var(--tw-bg-opacity, 1))}.selection\:bg-primary-container::selection{--tw-bg-opacity:1;background-color:rgb(254 228 233 / var(--tw-bg-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:opacity-80:hover{opacity:0.8}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.dark\:bg-zinc-950\/80:is(.dark *){background-color:rgb(9 9 11 / 0.8)}.dark\:text-pink-300:is(.dark *){--tw-text-opacity:1;color:rgb(249 168 212 / var(--tw-text-opacity, 1))}.dark\:text-zinc-400:is(.dark *){--tw-text-opacity:1;color:rgb(161 161 170 / var(--tw-text-opacity, 1))}</style></head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container" data-mode="connect">
+<!-- TopAppBar Content Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md shadow-[0_15px_40px_-15px_rgba(244,167,185,0.2)]">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<button class="active:scale-95 transition-transform duration-200 hover:opacity-80 transition-opacity text-zinc-500 dark:text-zinc-400">
+<span class="material-symbols-outlined text-3xl">arrow_back</span>
+</button>
+<h1 class="font-headline font-extrabold tracking-tighter text-2xl text-pink-400 dark:text-pink-300">
+                Terms &amp; Conditions
+            </h1>
+<button class="active:scale-95 transition-transform duration-200 hover:opacity-80 transition-opacity text-pink-400 dark:text-pink-300">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="bg-gradient-to-r from-pink-200 to-sky-200 h-[2px] w-full opacity-30"></div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-2xl mx-auto min-h-[884px] relative overflow-hidden" data-stitch-vh="min-h-[884px]===min-h-screen">
+<!-- Background Decorative Elements -->
+<div class="absolute -top-10 -right-20 w-64 h-64 organic-blob bg-primary-container opacity-20 -z-10 blur-3xl"></div>
+<div class="absolute top-1/2 -left-32 w-80 h-80 organic-blob bg-secondary-container opacity-20 -z-10 blur-3xl"></div>
+<div class="absolute bottom-10 right-0 opacity-[0.03] -z-10">
+<span class="material-symbols-outlined text-[15rem]">pets</span>
+</div>
+<!-- Intro Section -->
+<div class="mb-10 text-center">
+<div class="inline-flex items-center justify-center w-20 h-20 bg-primary-container rounded-full mb-6 shadow-[0_10px_30px_-5px_rgba(244,167,185,0.4)]">
+<span class="material-symbols-outlined text-primary text-4xl">article</span>
+</div>
+<p class="text-on-surface-variant font-medium leading-relaxed">
+                Last updated: April 2026. These terms govern your use of the Sniffr digital sanctuary for you and your furry companions.
+            </p>
+</div>
+<!-- Scrollable Content Container -->
+<div class="space-y-6">
+<!-- Welcome Section -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_15px_40px_-15px_rgba(168,216,234,0.3)] border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary text-2xl">sentiment_satisfied</span>
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Welcome to Sniffr</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+                    By wagging your tail and entering the Sniffr ecosystem, you agree to follow our house rules. We’re here to provide a safe, playful environment for pet parents.
+                </p>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">Status: Effective</span>
+<div class="h-1 w-1 rounded-full bg-outline"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Version 2.4</span>
+</div>
+</section>
+<!-- Doodle Divider -->
+<div class="flex justify-center py-4 opacity-20">
+<span class="material-symbols-outlined text-4xl">cruelty_free</span>
+</div>
+<!-- User Responsibilities -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_15px_40_px_-15px_rgba(244,167,185,0.2)] border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-2xl">verified_user</span>
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">User Responsibilities</h2>
+</div>
+<div class="space-y-4">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+<p class="text-on-surface-variant text-sm">Provide accurate information about your pet's vaccination status and temperament.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+<p class="text-on-surface-variant text-sm">Treat other members with the same kindness you'd give a golden retriever.</p>
+</div>
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-tertiary text-lg">check_circle</span>
+<p class="text-on-surface-variant text-sm">Ensure your pet's profile photo is clear and represents them accurately.</p>
+</div>
+</div>
+</section>
+<!-- Acceptable Use -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_15px_40px_-15px_rgba(213,242,233,0.3)] border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-tertiary text-2xl">potted_plant</span>
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Acceptable Use</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    Sniffr is a sanctuary. No barking (harassment), no digging (data mining), and no chasing squirrels (spamming). We reserve the right to revoke park privileges for any behavior that disrupts our community's harmony.
+                <br><br><div>1. Eligibility: You must be at least 14 years of age to use this Platform. By registering, you confirm that: You are legally competent under applicable Indian laws. You are the lawful owner or authorized caretaker of the pet(s) listed</div><div><br></div><div>2. Nature of Service: Sniffr is a digital platform that: Connects pet owners for breeding purposes (dogs and cats), Facilitates discovery, communication, and arrangement between users</div><div><br></div><div>We do not:</div><div>Guarantee successful mating or breeding outcomes</div><div>Verify genetic health, pedigree authenticity, or behavior of animals. Act as a breeder, broker, or veterinary authority.</div><div><br></div><div>3. User Responsibilities: You agree that: All information provided (pet profile, health, breed, etc.) is accurate</div><div>Your pet is healthy, vaccinated, and fit for mating</div><div>You will comply with applicable animal welfare laws, including: Prevention of Cruelty to Animals Act, 1960</div><div>Local municipal pet regulations</div><div><br></div><div>You must not:</div><div>Misrepresent your pet</div><div>Engage in illegal breeding practices</div><div>Use the platform for commercial exploitation without disclosure.</div><div><br></div><div>4. Health &amp; Ethical Breeding Disclaimer: Sniffr strongly encourages: Ethical breeding practices, Veterinary consultation before mating, Avoidance of inbreeding or overbreeding.</div><div><br></div><div>We are not responsible for:</div><div>Injury, illness, or death of any animal Genetic defects or disputes arising post-mating.</div><div><br></div><div>5. Payments &amp; Transactions: If applicable: Sniffr may charge subscription or service fees. All payments are processed via third-party providers. We do not guarantee refunds unless explicitly stated.</div><div><br></div><div>6. User Interactions:mUsers are solely responsible for: Communication with other users, Physical meetings and arrangements. Sniffr is not liable for: Disputes, fraud, or misconduct between users.</div><div><br></div><div class="">7. Content &amp; Conduct: You agree not to upload or share: False, misleading, or harmful content, Abusive, illegal, or obscene material. We reserve the right to: Remove content, Suspend or terminate accounts.</div><div class=""><br></div><div class="">8. Intellectual Property: All content on Sniffr (excluding user content) is owned by us and protected under Indian IP laws.</div><div><br></div><div class="">9. Termination: We may suspend or terminate access: For violation of these Terms, For legal or operational reasons.</div><div><br></div><div class="">10. Limitation of Liability: To the maximum extent permitted by law: Sniffr shall not be liable for: Indirect, incidental, or consequential damages, Loss arising from user interactions or pet breeding outcomes.</div><div><br></div><div>11. Governing Law: These Terms shall be governed by the laws of India. Jurisdiction: Courts of Chennai.</div></p>
+</section>
+<!-- Doodle Divider -->
+<div class="flex justify-center py-4 opacity-20">
+<span class="material-symbols-outlined text-4xl">sound_detection_dog_barking</span>
+</div>
+<!-- Account & Safety -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_15px_40px_-15px_rgba(168,216,234,0.3)] border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary text-2xl">lock</span>
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Account &amp; Safety</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+                    You are responsible for keeping your collar (password) secure. Notify us immediately if you suspect someone else is sniffing around your private data.
+                </p>
+<div class="bg-secondary-container/30 p-4 rounded-xl flex gap-3 items-start">
+<span class="material-symbols-outlined text-on-secondary-container mt-0.5">info</span>
+<p class="text-xs font-medium text-on-secondary-container">Tip: We sniff faster than your sniff buddies. So don't worry about your data.</p>
+</div>
+</section>
+<!-- Limitations -->
+<section class="bg-surface-container-lowest p-8 rounded-lg shadow-[0_15px_40px_-15px_rgba(244,167,185,0.2)] border border-outline-variant/10">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-error text-2xl">warning</span>
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Limitations</h2>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    While we strive for a perfect experience, Sniffr is provided "as-is." We cannot guarantee that all tails will wag at all times. Liability for missed treats or unexpected park closures is limited to the fullest extent permitted by law.
+                </p>
+</section>
+<!-- Closing Footer -->
+<div class="text-center pt-8 pb-4">
+<div class="w-12 h-1 bg-outline-variant/30 mx-auto rounded-full mb-6"></div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Have questions?</p>
+<a class="text-primary font-bold hover:underline transition-all" href="mailto:official.sniffr@gmail.com">Sniffr.co.in</a>
+<div class="mt-8 flex justify-center gap-6">
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-bold">Privacy</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">gavel</span>
+<span class="text-[10px] font-bold">Terms</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined">help</span>
+<span class="text-[10px] font-bold">FAQ</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Only if relevant, but typically hidden on legal screens. 
+         Suppressing as per mandate "Suppress on Details, Transactional, and Settings screens" -->
+</body></html>

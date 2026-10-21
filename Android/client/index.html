@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- L11/section 5: viewport-fit=cover lets the app draw into the safe
+       area (notch/gesture bar) on Android/iOS so BottomNav's own safe-area
+       padding (see index.css) can account for it -- without this, the OS
+       just letterboxes the page instead, and the fixed bottom nav can sit
+       under the Android gesture area.
+       maximum-scale=1, user-scalable=no locks out pinch-zoom and the
+       double-tap-to-zoom gesture -- without this, the page behaves exactly
+       like a website opened in a mobile browser (pinch to scale, drag to
+       pan around a zoomed-in page, fixed nav/header visually drifting out
+       of place once zoomed) instead of a fixed-scale app screen. This is
+       standard for a Capacitor/hybrid app shell; every layout here is
+       already built to Tailwind's responsive breakpoints, not to being
+       user-zoomable. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="description" content="Sniffr - Find your pet's perfect playmate. A social platform for pet lovers." />
+  <meta name="theme-color" content="#F4A7B9" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GYEBH5VZ8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5GYEBH5VZ8');
+  </script>
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="canonical" href="https://app.sniffrweb.com/" />
+
+  <!-- Open Graph / social link previews -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Sniffr" />
+  <meta property="og:title" content="Sniffr - Pet Dating & Social" />
+  <meta property="og:description" content="Sniffr - Find your pet's perfect playmate. A social platform for pet lovers." />
+  <meta property="og:image" content="https://app.sniffrweb.com/logo.png" />
+  <meta property="og:url" content="https://app.sniffrweb.com/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Sniffr - Pet Dating & Social" />
+  <meta name="twitter:description" content="Sniffr - Find your pet's perfect playmate. A social platform for pet lovers." />
+  <meta name="twitter:image" content="https://app.sniffrweb.com/logo.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sniffr",
+    "description": "Sniffr - Find your pet's perfect playmate. A social platform for pet lovers.",
+    "url": "https://app.sniffrweb.com/",
+    "applicationCategory": "SocialNetworkingApplication"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fonts load without blocking the first paint (preload, then applied on
+       load). Text swaps in when ready; the icon font uses display=block so
+       icon names never flash as plain words while it loads. -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet" />
+  </noscript>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100dvh;
+      background: #F7F9FC;
+    }
+    ::selection {
+      background: rgba(244, 167, 185, 0.25);
+      color: #453F41;
+    }
+    html { scroll-behavior: smooth; }
+  </style>
+  <!-- Google Identity Services (for account chooser) -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <!-- Section 6: the Apple Sign-In script was removed from here -- Apple
+       Sign-In was never wired into the frontend UI (no AppleID reference
+       anywhere in client/src; see git history / version1.md), so this was
+       loading an unused third-party script globally on every page load. -->
+  <title>Sniffr - Pet Dating & Social</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- Every modal/dialog/overlay portals here instead of rendering inside #root, so no
+       ancestor's CSS (transform, filter, animation, etc.) can ever hijack its
+       "position: fixed" containing block back to something other than the real viewport. -->
+  <div id="modal-root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

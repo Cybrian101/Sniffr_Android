@@ -1,0 +1,31 @@
+{
+  "appId": "com.sniffr.app",
+  "appName": "Sniffr",
+  "webDir": "dist",
+  "server": {
+    "url": "http://localhost:5173",
+    "cleartext": true,
+    "allowNavigation": ["sniffrweb.onrender.com"]
+  },
+
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#F7F9FC"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#F7F9FC",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#F7F9FC",
+      "overlaysWebView": false
+    },
+    "SystemBars": {
+      "insetsHandling": "css",
+      "initialViewportFitValueHint": "cover"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+# Not a secret -- just the production API base URL the local `cap:build`/
+# `cap:sync` scripts need baked into the Android bundle at build time, or
+# every release ships pointed at localhost:3001. Tracked deliberately.
+!client/.env.capacitor
+**/.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code (optional)
+.vscode/settings.json
+
+# Runtime files
+*.pid
+*.seed
+
+# Temporary files
+.tmp/
+temp/
+
+# Windows
+desktop.ini
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# User uploads
+server/uploads/
+
+# Local storage (if used)
+server/storage/local/
+# SniffedOut demo ids (server/scripts/demoSniffedOut.js)
+server/scripts/.demo-sniffedout.json
+
+# Local throwaway embedded Postgres (dev-only DB, see server/scripts/local-db.js)
+server/.local-pg-data/
